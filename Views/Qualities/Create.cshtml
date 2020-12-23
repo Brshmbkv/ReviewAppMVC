@@ -1,0 +1,55 @@
+﻿@model Quality
+@{
+}
+<div class="col-md-6">
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Smile" class="control-label">Smile</label>
+            <select asp-for="Smile" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Smile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Beauty" class="control-label">Beauty</label>
+            <select asp-for="Beauty" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Beauty" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nature" class="control-label">Nature</label>
+            <select asp-for="Nature" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Nature" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Character" class="control-label">Character</label>
+            <select asp-for="Character" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Character" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Communication" class="control-label">Communication</label>
+            <select asp-for="Communication" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Communication" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Humor" class="control-label">Humor</label>
+            <select asp-for="Humor" asp-items="Html.GetEnumSelectList<QualityLevel>()" class="form-control">
+                <option selected disabled>Please select</option>
+            </select>
+            <span asp-validation-for="Humor" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReviewText" class="control-label">Review Text: </label>
+            <textarea class="form-control" rows="4" placeholder="Review text" asp-for="ReviewText"></textarea>
+            <span asp-validation-for="ReviewText" class="text-danger"></span>
+        </div>
+        <input type="submit" value="Create a Review" class="btn btn-primary" />
+    </form>
+</div>

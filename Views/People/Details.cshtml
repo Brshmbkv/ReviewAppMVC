@@ -1,0 +1,55 @@
+﻿@model ReviewsViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<Person> SignInManager
+@inject UserManager<Person> UserManager
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>@Model.Person.Name</h3>
+                <p class="card-text">@Model.Person.Email</p>
+                @if (Model.Person.Id != UserManager.GetUserId(User))
+                {
+                    <a asp-controller="Qualities" asp-action="Create" asp-route-id="@Model.Person.Id" class="card-link">Add Review</a>
+                }
+                else
+                {
+            <p class="text-danger">You cannot add a review to your own page</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        @foreach (var review in Model.Qualities)
+        {
+            <div class="card mt-3">
+                <div class="card-header">
+                    <span>Review id: @review.Id </span>
+                    @if (Model.Person.Id == UserManager.GetUserId(User))
+                    {
+                        <form asp-controller="Qualities" asp-action="Delete" asp-route-id="@review.Id" asp-route-foo="@Model.Person.Id" method="post">
+                            <input type="submit" class="btn btn-sm btn-danger float-right" value="Delete a review" />
+                        </form>
+                    }
+                </div>
+                <div class="card-body row">
+                    <div class="col-md-6">
+                        <p class="card-text">Humor: @review.Humor</p>
+                        <p class="card-text">Nature: @review.Nature</p>
+                        <p class="card-text">Smile: @review.Smile</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="card-text">Beauty: @review.Beauty</p>
+                        <p class="card-text">Character: @review.Character</p>
+                        <p class="card-text">Communication: @review.Communication</p>
+                    </div>
+                    <div class="col-md-12 rounded mt-2 bg-light">
+                        @review.ReviewText
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
